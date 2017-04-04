@@ -1,0 +1,560 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/hapijs/good#readme">good (v7.1.0)</a>
+</h1>
+<h4>Server and process monitoring plugin</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.good">module good</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.register">
+            function <span class="apidocSignatureSpan">good.</span>register
+            <span class="apidocSignatureSpan">(server, options, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">good.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.good.utils">module good.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.NoOp">
+            function <span class="apidocSignatureSpan">good.utils.</span>NoOp
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.Ops">
+            function <span class="apidocSignatureSpan">good.utils.</span>Ops
+            <span class="apidocSignatureSpan">(ops)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.RequestError">
+            function <span class="apidocSignatureSpan">good.utils.</span>RequestError
+            <span class="apidocSignatureSpan">(request, error)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.RequestLog">
+            function <span class="apidocSignatureSpan">good.utils.</span>RequestLog
+            <span class="apidocSignatureSpan">(request, event)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.RequestSent">
+            function <span class="apidocSignatureSpan">good.utils.</span>RequestSent
+            <span class="apidocSignatureSpan">(reqOptions, resOptions, request)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.ServerLog">
+            function <span class="apidocSignatureSpan">good.utils.</span>ServerLog
+            <span class="apidocSignatureSpan">(event)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.good.utils.WreckResponse">
+            function <span class="apidocSignatureSpan">good.utils.</span>WreckResponse
+            <span class="apidocSignatureSpan">(error, request, response, start, uri)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.good" id="apidoc.module.good">module good</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.good.register" id="apidoc.element.good.register">
+        function <span class="apidocSignatureSpan">good.</span>register
+        <span class="apidocSignatureSpan">(server, options, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">(server, options, next) =&gt; {
+
+    const result = Joi.validate(options, Schema.monitor);
+    Hoek.assert(!result.error, 'Invalid', 'monitorOptions', 'options', result.error);
+
+    const monitor = new Monitor(server, result.value);
+    server.ext([{
+        type: 'onPostStop',
+        method: internals.onPostStop(monitor)
+    }, {
+        type: 'onPreStart',
+        method: internals.onPreStart(monitor, result.value)
+    }]);
+
+    return monitor.start(next);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                headers: { 'x-api-key': 12345 }
+            }
+        }]
+    }]
+}
+};
+
+server.<span class="apidocCodeKeywordSpan">register</span>({
+register: require('good'),
+options,
+}, (err) =&gt; {
+
+if (err) {
+    return console.error(err);
+}
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.good.utils" id="apidoc.module.good.utils">module good.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.NoOp" id="apidoc.element.good.utils.NoOp">
+        function <span class="apidocSignatureSpan">good.utils.</span>NoOp
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class NoOp extends Stream.Transform {
+    constructor() {
+
+        super({ objectMode: true });
+    }
+    _transform(value, encoding, callback) {
+
+        callback(null, value);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    const stream = new Ctor();
+    Hoek.assert(typeof stream.pipe === 'function', `Error in ${reporterName}. ${moduleName} must create a stream that
+has a pipe function.`);
+
+    streamObjs.push(stream);
+}
+
+if (streamObjs.length === 1) {
+    streamObjs.unshift(new Utils.<span class="apidocCodeKeywordSpan">NoOp</span>());
+}
+
+this._reporters[reporterName] = Pumpify.obj(streamObjs);
+this._reporters[reporterName].on('error', (err) =&gt; {
+
+    console.error(`There was a problem (${err}) in ${reporterName} and it has been destroyed.`);
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.Ops" id="apidoc.element.good.utils.Ops">
+        function <span class="apidocSignatureSpan">good.utils.</span>Ops
+        <span class="apidocSignatureSpan">(ops)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class Ops {
+    constructor(ops) {
+
+        this.event = 'ops';
+        this.timestamp = Date.now();
+        this.host = ops.host;
+        this.pid = process.pid;
+        this.os = {
+            load: ops.osload,
+            mem: ops.osmem,
+            uptime: ops.osup
+        };
+        this.proc = {
+            uptime: ops.psup,
+            mem: ops.psmem,
+            delay: ops.psdelay
+        };
+        this.load = {
+            requests: ops.requests,
+            concurrents: ops.concurrents,
+            responseTimes: ops.responseTimes,
+            sockets: ops.sockets
+        };
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        this._responseHandler = (request) =&gt; {
+
+this.push(() =&gt; new Utils.RequestSent(reqOptions, resOptions, request));
+        };
+
+        this._opsHandler = (results) =&gt; {
+
+this.push(() =&gt; new Utils.<span class="apidocCodeKeywordSpan">Ops</span>(results));
+        };
+
+        if (this.settings.wreck) {
+this._wreckHandler = (error, request, response, start, uri) =&gt; {
+
+    this.push(() =&gt; new Utils.WreckResponse(error, request, response, start, uri));
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.RequestError" id="apidoc.element.good.utils.RequestError">
+        function <span class="apidocSignatureSpan">good.utils.</span>RequestError
+        <span class="apidocSignatureSpan">(request, error)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class RequestError {
+    constructor(request, error) {
+
+        this.event = 'error';
+        this.timestamp = request.info.received;
+        this.id = request.id;
+        this.url = request.url;
+        this.method = request.method;
+        this.pid = process.pid;
+        this.error = error;
+        this.config = internals.extractConfig(request);
+    }
+    toJSON() {
+
+        const result = Object.assign({}, this, {
+            error: {
+                error: this.error.message,
+                stack: this.error.stack
+            }
+        });
+        return result;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this._logHandler = (event) =&gt; {
+
+    this.push(() =&gt; new Utils.ServerLog(event));
+};
+
+this._errorHandler = (request, error) =&gt; {
+
+    this.push(() =&gt; new Utils.<span class="apidocCodeKeywordSpan">RequestError</span>(request, error));
+};
+
+this._responseHandler = (request) =&gt; {
+
+    this.push(() =&gt; new Utils.RequestSent(reqOptions, resOptions, request));
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.RequestLog" id="apidoc.element.good.utils.RequestLog">
+        function <span class="apidocSignatureSpan">good.utils.</span>RequestLog
+        <span class="apidocSignatureSpan">(request, event)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class RequestLog {
+    constructor(request, event) {
+
+        this.event = 'request';
+        this.timestamp = event.timestamp;
+        this.tags = event.tags;
+        this.data = event.data;
+        this.pid = process.pid;
+        this.id = request.id;
+        this.method = request.method;
+        this.path = request.path;
+        this.config = internals.extractConfig(request);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+this._ops = this.settings.ops &amp;&amp; new Oppsy(server, this.settings.ops.config);
+
+// Event handlers
+
+this._requestLogHandler = (request, event) =&gt; {
+
+    this.push(() =&gt; new Utils.<span class="apidocCodeKeywordSpan">RequestLog</span>(request, event));
+};
+
+this._logHandler = (event) =&gt; {
+
+    this.push(() =&gt; new Utils.ServerLog(event));
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.RequestSent" id="apidoc.element.good.utils.RequestSent">
+        function <span class="apidocSignatureSpan">good.utils.</span>RequestSent
+        <span class="apidocSignatureSpan">(reqOptions, resOptions, request)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class RequestSent {
+    constructor(reqOptions, resOptions, request) {
+
+        const req = request.raw.req;
+        const res = request.raw.res;
+
+        this.event = 'response';
+        this.timestamp = request.info.received;
+        this.id = request.id;
+        this.instance = request.connection.info.uri;
+        this.labels = request.connection.settings.labels;
+        this.method = request.method;
+        this.path = request.path;
+        this.query = request.query;
+        this.responseTime = Date.now() - request.info.received;
+        this.responseSentTime = request.info.responded - request.info.received;
+        this.statusCode = res.statusCode;
+        this.pid = process.pid;
+        this.httpVersion = request.raw.req.httpVersion;
+        this.source = {
+            remoteAddress: request.info.remoteAddress,
+            userAgent: req.headers['user-agent'],
+            referer: req.headers.referer
+        };
+        this.route = request.route.path;
+
+<span class="apidocCodeCommentSpan">        /* $lab:coverage:off$ */
+</span>        this.log = (request.route.settings.log === false ? [] : request.getLog());          // Explicitly compare to false for hapi
+ &lt; v15
+        /* $lab:coverage:on$ */
+
+        this.tags = request.route.settings.tags;
+
+        if (reqOptions.headers) {
+            this.headers = req.headers;
+        }
+
+        if (reqOptions.payload) {
+            this.requestPayload = request.payload;
+        }
+
+        if (resOptions.payload &amp;&amp; request.response) {
+            this.responsePayload = request.response.source;
+        }
+        this.config = internals.extractConfig(request);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this._errorHandler = (request, error) =&gt; {
+
+    this.push(() =&gt; new Utils.RequestError(request, error));
+};
+
+this._responseHandler = (request) =&gt; {
+
+    this.push(() =&gt; new Utils.<span class="apidocCodeKeywordSpan">RequestSent</span>(reqOptions, resOptions, request));
+};
+
+this._opsHandler = (results) =&gt; {
+
+    this.push(() =&gt; new Utils.Ops(results));
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.ServerLog" id="apidoc.element.good.utils.ServerLog">
+        function <span class="apidocSignatureSpan">good.utils.</span>ServerLog
+        <span class="apidocSignatureSpan">(event)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class ServerLog {
+    constructor(event) {
+
+        this.event = 'log';
+        this.timestamp = event.timestamp;
+        this.tags = event.tags;
+        this.data = event.data;
+        this.pid = process.pid;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this._requestLogHandler = (request, event) =&gt; {
+
+    this.push(() =&gt; new Utils.RequestLog(request, event));
+};
+
+this._logHandler = (event) =&gt; {
+
+    this.push(() =&gt; new Utils.<span class="apidocCodeKeywordSpan">ServerLog</span>(event));
+};
+
+this._errorHandler = (request, error) =&gt; {
+
+    this.push(() =&gt; new Utils.RequestError(request, error));
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.good.utils.WreckResponse" id="apidoc.element.good.utils.WreckResponse">
+        function <span class="apidocSignatureSpan">good.utils.</span>WreckResponse
+        <span class="apidocSignatureSpan">(error, request, response, start, uri)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class WreckResponse {
+    constructor(error, request, response, start, uri) {
+
+        response = response || {};
+        uri = uri || {};
+        this.event = 'wreck';
+        this.timestamp = Date.now();
+        this.timeSpent = this.timestamp - start;
+        this.pid = process.pid;
+
+        if (error) {
+            this.error = {
+                message: error.message,
+                stack: error.stack
+            };
+        }
+
+        this.request = {
+            method: uri.method,
+            path: uri.path,
+            url: uri.href,
+            protocol: uri.protocol,
+            host: uri.host,
+            headers: request._headers
+        };
+
+        this.response = {
+            statusCode: response.statusCode,
+            statusMessage: response.statusMessage,
+            headers: response.headers
+        };
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+        this.push(() =&gt; new Utils.Ops(results));
+    };
+
+    if (this.settings.wreck) {
+        this._wreckHandler = (error, request, response, start, uri) =&gt; {
+
+            this.push(() =&gt; new Utils.<span class="apidocCodeKeywordSpan">WreckResponse</span>(error, request, response, start
+, uri));
+        };
+    }
+
+}
+
+startOps(interval) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
