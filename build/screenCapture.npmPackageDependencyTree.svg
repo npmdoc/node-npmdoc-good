@@ -1,30 +1,33 @@
-<svg height="430" width="720" xmlns="http://www.w3.org/2000/svg">
-<rect height="430" fill="#555" width="720"></rect>
+<svg height="478" width="720" xmlns="http://www.w3.org/2000/svg">
+<rect height="478" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">├─┬ good@7.1.0 </tspan>
-<tspan x="10" y="42">│ ├── hoek@4.1.1 </tspan>
-<tspan x="10" y="58">│ ├─┬ joi@10.4.1 </tspan>
-<tspan x="10" y="74">│ │ ├── isemail@2.2.1 </tspan>
-<tspan x="10" y="90">│ │ ├── items@2.1.1 </tspan>
-<tspan x="10" y="106">│ │ └── topo@2.0.2 </tspan>
-<tspan x="10" y="122">│ ├── oppsy@1.0.2 </tspan>
-<tspan x="10" y="138">│ └─┬ pumpify@1.3.5 </tspan>
-<tspan x="10" y="154">│   ├─┬ duplexify@3.5.0 </tspan>
-<tspan x="10" y="170">│   │ ├── end-of-stream@1.0.0 </tspan>
-<tspan x="10" y="186">│   │ ├─┬ readable-stream@2.2.6 </tspan>
-<tspan x="10" y="202">│   │ │ ├── buffer-shims@1.0.0 </tspan>
-<tspan x="10" y="218">│   │ │ ├── core-util-is@1.0.2 </tspan>
-<tspan x="10" y="234">│   │ │ ├── isarray@1.0.0 </tspan>
-<tspan x="10" y="250">│   │ │ ├── process-nextick-args@1.0.7 </tspan>
-<tspan x="10" y="266">│   │ │ ├── string_decoder@0.10.31 </tspan>
-<tspan x="10" y="282">│   │ │ └── util-deprecate@1.0.2 </tspan>
-<tspan x="10" y="298">│   │ └── stream-shift@1.0.0 </tspan>
-<tspan x="10" y="314">│   ├── inherits@2.0.3 </tspan>
-<tspan x="10" y="330">│   └─┬ pump@1.0.2 </tspan>
-<tspan x="10" y="346">│     ├─┬ end-of-stream@1.4.0 </tspan>
-<tspan x="10" y="362">│     │ └── once@1.4.0 </tspan>
-<tspan x="10" y="378">│     └─┬ once@1.3.3 </tspan>
-<tspan x="10" y="394">│       └── wrappy@1.0.2 </tspan>
-<tspan x="10" y="410">└── UNMET PEER DEPENDENCY hapi@&gt;=10.x.x</tspan>
+<tspan x="10" y="26">2 megabytes installed</tspan>
+<tspan x="10" y="42"></tspan>
+<tspan x="10" y="58">node_modules</tspan>
+<tspan x="10" y="74">├─┬ good@7.1.0 </tspan>
+<tspan x="10" y="90">│ ├── hoek@4.1.1 </tspan>
+<tspan x="10" y="106">│ ├─┬ joi@10.4.1 </tspan>
+<tspan x="10" y="122">│ │ ├── isemail@2.2.1 </tspan>
+<tspan x="10" y="138">│ │ ├── items@2.1.1 </tspan>
+<tspan x="10" y="154">│ │ └── topo@2.0.2 </tspan>
+<tspan x="10" y="170">│ ├── oppsy@1.0.2 </tspan>
+<tspan x="10" y="186">│ └─┬ pumpify@1.3.5 </tspan>
+<tspan x="10" y="202">│   ├─┬ duplexify@3.5.0 </tspan>
+<tspan x="10" y="218">│   │ ├── end-of-stream@1.0.0 </tspan>
+<tspan x="10" y="234">│   │ ├─┬ readable-stream@2.2.9 </tspan>
+<tspan x="10" y="250">│   │ │ ├── buffer-shims@1.0.0 </tspan>
+<tspan x="10" y="266">│   │ │ ├── core-util-is@1.0.2 </tspan>
+<tspan x="10" y="282">│   │ │ ├── isarray@1.0.0 </tspan>
+<tspan x="10" y="298">│   │ │ ├── process-nextick-args@1.0.7 </tspan>
+<tspan x="10" y="314">│   │ │ ├── string_decoder@1.0.0 </tspan>
+<tspan x="10" y="330">│   │ │ └── util-deprecate@1.0.2 </tspan>
+<tspan x="10" y="346">│   │ └── stream-shift@1.0.0 </tspan>
+<tspan x="10" y="362">│   ├── inherits@2.0.3 </tspan>
+<tspan x="10" y="378">│   └─┬ pump@1.0.2 </tspan>
+<tspan x="10" y="394">│     ├─┬ end-of-stream@1.4.0 </tspan>
+<tspan x="10" y="410">│     │ └── once@1.4.0 </tspan>
+<tspan x="10" y="426">│     └─┬ once@1.3.3 </tspan>
+<tspan x="10" y="442">│       └── wrappy@1.0.2 </tspan>
+<tspan x="10" y="458">└── UNMET PEER DEPENDENCY hapi@&gt;=10.x.x</tspan>
 </text>
 </svg>
