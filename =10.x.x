@@ -1,4 +1,4 @@
-npmdoc-good@0.0.1 /home/travis/build/npmdoc/node-npmdoc-good
+npmdoc-good@0.0.2 /home/travis/build/npmdoc/node-npmdoc-good
 └─┬ hapi@16.1.1 
   ├── accept@2.1.3 
   ├── ammo@2.0.3 

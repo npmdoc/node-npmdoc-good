@@ -1,6 +1,6 @@
 # npmdoc-good
 
-#### api documentation for  [good (v7.1.0)](https://github.com/hapijs/good#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-good.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-good) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-good.svg)](https://travis-ci.org/npmdoc/node-npmdoc-good)
+#### basic api documentation for  [good (v7.1.0)](https://github.com/hapijs/good#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-good.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-good) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-good.svg)](https://travis-ci.org/npmdoc/node-npmdoc-good)
 
 #### Server and process monitoring plugin
 
@@ -84,7 +84,8 @@
     "scripts": {
         "test": "lab -m 5000 -t 100 -v -La code"
     },
-    "version": "7.1.0"
+    "version": "7.1.0",
+    "bin": {}
 }
 ```
 
